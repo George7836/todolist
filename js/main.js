@@ -61,7 +61,7 @@ tasksList.addEventListener('click', deleteTask)
 
 function deleteTask(event) {
     // Проверяем если клик был НЕ по кнопке "удалить задачу"
-	if (event.target.dataset.action !== 'delete') return;
+    if (event.target.dataset.action !== 'delete') return;
     // находим родителя кнопки (карточку задачи)
     const parentNode = event.target.closest('.list-group-item');
 
