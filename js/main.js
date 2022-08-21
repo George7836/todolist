@@ -60,28 +60,27 @@ function addTask(event) {
 tasksList.addEventListener('click', deleteTask)
 
 function deleteTask(event) {
-    // проверяем что клик был сделан по кнопке "удалить"
-    if(event.target.dataset.action === 'delete') {
-        // находим родителя кнопки (карточку задачи)
-        const parentNode = event.target.closest('.list-group-item');
+    // Проверяем если клик был НЕ по кнопке "удалить задачу"
+	if (event.target.dataset.action !== 'delete') return;
+    // находим родителя кнопки (карточку задачи)
+    const parentNode = event.target.closest('.list-group-item');
 
-        // определяем ID задачи
-        const id = Number(parentNode.id);
+    // определяем ID задачи
+    const id = Number(parentNode.id);
 
-        // находим индекс задачи в массиве
-        const index = tasks.findIndex(function (task) {
-            if (task.id === id) {
-                return true;
-            }
-        })
+    // находим индекс задачи в массиве
+    const index = tasks.findIndex(function (task) {
+        if (task.id === id) {
+            return true;
+        }
+    })
 
-        // убираем задачу из массива
-        tasks.splice(index, 1)
+    // убираем задачу из массива
+    tasks.splice(index, 1)
 
-        saveToLocalStorage();
-        // удаление задачи из разметки
-        parentNode.remove();
-    }
+    saveToLocalStorage();
+    // удаление задачи из разметки
+    parentNode.remove();
 
     // прверка. Если в списке задач больше одного элемента, плказывать "Список дел пуст"
     // if(tasksList.children.length === 1) {
